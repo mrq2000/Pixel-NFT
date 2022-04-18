@@ -1,26 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import { Suspense } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { SnackbarProvider } from 'notistack';
+import ThemeConfig from './theme';
 
-function App() {
+import { SnackbarConfigurator } from './helpers/notify';
+import Home from 'pages/Home';
+import MainOutlet from './MainOutlet';
+import InitialWeb3Modal from 'components/web3modal/InitialWeb3Modal';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 0,
+      refetchOnWindowFocus: false,
+      keepPreviousData: false,
+    },
+  },
+});
+
+const ROUTER = (
+  <BrowserRouter>
+    <Suspense fallback={null}>
+      <Routes>
+        <Route path="" element={<MainOutlet />}>
+          <Route index element={<Home />} />
+        </Route>
+      </Routes>
+    </Suspense>
+  </BrowserRouter>
+);
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      {
+        // @ts-ignore
+        <SnackbarProvider maxSnack={3} anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}>
+          <SnackbarConfigurator />
+
+          <ThemeConfig mode={'light'}>{ROUTER}</ThemeConfig>
+
+          <InitialWeb3Modal />
+        </SnackbarProvider>
+      }
+    </QueryClientProvider>
   );
-}
+};
 
 export default App;
