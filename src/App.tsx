@@ -7,6 +7,7 @@ import ThemeConfig from './theme';
 
 import { SnackbarConfigurator } from './helpers/notify';
 import Home from 'pages/Home';
+import Pixel from 'pages/Pixel';
 import MainOutlet from './MainOutlet';
 import InitialWeb3Modal from 'components/web3modal/InitialWeb3Modal';
 
@@ -26,6 +27,7 @@ const ROUTER = (
       <Routes>
         <Route path="" element={<MainOutlet />}>
           <Route index element={<Home />} />
+          <Route path="pixel" element={<Pixel />} />
         </Route>
       </Routes>
     </Suspense>

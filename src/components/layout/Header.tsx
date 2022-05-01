@@ -19,7 +19,7 @@ interface IHeaderProps {
 }
 
 const Header = ({ handleOpenSideBar }: IHeaderProps) => {
-  const { accountAddress, isConnected } = useWeb3Store();
+  const { isConnected } = useWeb3Store();
 
   const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
 

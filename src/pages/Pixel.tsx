@@ -1,17 +1,16 @@
-import React, { useRef } from 'react';
-import { useEffect } from 'react-is/node_modules/@types/react';
+import { useRef } from 'react';
+
+import Box from '@mui/material/Box';
 
 const Pixel = () => {
   const canvasRef = useRef(null);
   const canvas = canvasRef.current;
 
-  useEffect(() => {
-    if (canvas) {
-      const context = canvas.getContext('2d');
-    }
-  }, [canvas]);
-
-  return <canvas ref={canvasRef} />;
+  return (
+    <Box>
+        Hahaha
+    </Box>
+  );
 };
 
 export default Pixel;
