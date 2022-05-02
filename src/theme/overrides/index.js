@@ -11,6 +11,7 @@ import IconButton from './IconButton';
 import Autocomplete from './Autocomplete';
 import Dialog from './Dialog';
 import Alert from './Alert';
+import Switch from './Switch';
 
 // ----------------------------------------------------------------------
 
@@ -28,5 +29,6 @@ export default function ComponentsOverrides(theme, mode) {
     Autocomplete(theme),
     Dialog(theme),
     Alert(theme),
+    Switch(theme, mode)
   );
 }

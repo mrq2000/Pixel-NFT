@@ -42,7 +42,7 @@ const App = () => {
         <SnackbarProvider maxSnack={3} anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}>
           <SnackbarConfigurator />
 
-          <ThemeConfig mode={'light'}>{ROUTER}</ThemeConfig>
+          <ThemeConfig mode={'dark'}>{ROUTER}</ThemeConfig>
 
           <InitialWeb3Modal />
         </SnackbarProvider>

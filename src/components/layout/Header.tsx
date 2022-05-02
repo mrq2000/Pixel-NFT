@@ -8,11 +8,11 @@ import Typography from '@mui/material/Typography';
 import { Theme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import IconButton from '@mui/material/IconButton';
-import MuiLink from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 
 import ConnectButton from './ConnectButton';
 import useWeb3Store from 'stores/useWeb3Store';
+import CustomLink from 'components/common/CustomLink';
 
 interface IHeaderProps {
   handleOpenSideBar: () => void;
@@ -27,10 +27,13 @@ const Header = ({ handleOpenSideBar }: IHeaderProps) => {
     <AppBar
       position="fixed"
       sx={{
-        backgroundColor: (theme: Theme) => `${theme.palette.background.default}40`,
+        backgroundColor: (theme: Theme) => `${theme.palette.background.default}80`,
         color: (theme: Theme) => theme.palette.primary.main,
         backdropFilter: 'blur(6px)',
         boxShadow: 'none',
+        a: {
+          textDecoration: 'none'
+        }
       }}
     >
       <Container disableGutters>
@@ -49,39 +52,10 @@ const Header = ({ handleOpenSideBar }: IHeaderProps) => {
             </IconButton>
           ) : (
             <Box display="flex" alignItems="center">
-              <Link to="/">
-                <MuiLink
-                  variant="h6"
-                  sx={{
-                    mr: 3,
-                    ml: 1,
-                    textDecoration: 'none',
-                    ':hover': {
-                      textDecoration: 'underline',
-                    },
-                  }}
-                >
-                  Home
-                </MuiLink>
-              </Link>
+              <CustomLink to="/">Home</CustomLink>
+              <CustomLink to="/marketplace">Marketplace</CustomLink>
 
-              {isConnected && (
-                <Link to="/">
-                  <MuiLink
-                    variant="h6"
-                    sx={{
-                      mr: 3,
-                      ml: 1,
-                      textDecoration: 'none',
-                      ':hover': {
-                        textDecoration: 'underline',
-                      },
-                    }}
-                  >
-                    Profile
-                  </MuiLink>
-                </Link>
-              )}
+              {isConnected && <CustomLink to="/profile">Profile</CustomLink>}
 
               <Box sx={{ ml: 2, display: 'inline' }}>
                 <ConnectButton />

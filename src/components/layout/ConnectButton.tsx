@@ -7,7 +7,6 @@ import { useState } from 'react';
 const ConnectButton = () => {
   const { accountAddress, loadWeb3Modal, logoutOfWeb3Modal, isConnected } = useWeb3Store();
   const [isHover, setIsHover] = useState(false);
-  console.log(isHover);
 
   return (
     <Button
