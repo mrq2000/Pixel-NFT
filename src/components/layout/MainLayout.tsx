@@ -32,8 +32,8 @@ const MainLayout = ({ children }: any) => {
       <Header handleOpenSideBar={handleOpenSideBar} />
       <SidebarMobile openSideBar={openSideBar} handleCloseSideBar={handleCloseSideBar} />
 
-      <Box component="main" flexGrow={1} pb={12} mt={2}>
-        <Toolbar />
+      <Box component="main" flexGrow={1} pb={12} mt={3}>
+        <Toolbar sx={{ minHeight: { md: 84 } }} />
         {children}
       </Box>
 

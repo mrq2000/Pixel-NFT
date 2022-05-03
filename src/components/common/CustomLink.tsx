@@ -2,9 +2,13 @@ import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 import type { LinkProps } from 'react-router-dom';
 
 import MuiLink from '@mui/material/Link';
-import { Theme } from '@mui/material';
+import { Theme, SxProps } from '@mui/material';
 
-const CustomLink = ({ children, to, ...props }: LinkProps) => {
+interface ICustomLink extends LinkProps {
+  muiSxProps?: SxProps<Theme>;
+}
+
+const CustomLink = ({ children, to, muiSxProps, ...props }: ICustomLink) => {
   const resolved = useResolvedPath(to);
   const match = useMatch({ path: resolved.pathname, end: true });
 
@@ -21,7 +25,7 @@ const CustomLink = ({ children, to, ...props }: LinkProps) => {
 
   return (
     <Link to={to} {...props}>
-      <MuiLink sx={LinkStyle}>{children}</MuiLink>
+      <MuiLink sx={{ ...LinkStyle, ...muiSxProps }}>{children}</MuiLink>
     </Link>
   );
 };

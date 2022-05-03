@@ -14,7 +14,8 @@ const ConnectButton = () => {
       sx={{
         boxShadow: 'none',
         borderRadius: 3,
-        width: 150,
+        width: 250,
+        paddingY: '0.6rem',
       }}
       onClick={() => {
         if (!isConnected) {

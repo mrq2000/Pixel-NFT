@@ -6,31 +6,21 @@ import Button from '@mui/material/Button';
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
-import { getColor } from 'helpers/color';
+import { getColor, HEIGHT, WIDTH } from 'helpers/pixel';
 import Pixel from './Pixel';
 
-const HEIGHT = 21;
-const WIDTH = 17;
 const EXPORT_IMAGE_WIDTH = 450;
 
 interface IDrawingPanel {
-  data: string;
+  data: string[];
   selectedColor: string;
+  handleChangeColor: (newColor: string, index: number) => void;
 }
 
-const DrawingPanel = ({ data, selectedColor }: IDrawingPanel) => {
-  const [pixelData, setPixelData] = useState(data.split(''));
+const DrawingPanel = ({ data, selectedColor, handleChangeColor }: IDrawingPanel) => {
   const [isShowBorder, setIsShowBorder] = useState(false);
 
   const drawingPanelRef = useRef<any>();
-
-  const handleChangeData = (newChar: string, index: number) => {
-    if (newChar.length == 1) {
-      const newData = [...pixelData];
-      newData[index] = newChar;
-      setPixelData(newData);
-    }
-  };
 
   const renderDrawing = () => {
     const result = [];
@@ -40,14 +30,14 @@ const DrawingPanel = ({ data, selectedColor }: IDrawingPanel) => {
       const width = 100 / WIDTH;
 
       for (let j = 0; j < WIDTH; j++) {
-        const index = i * HEIGHT + j;
-        const defaultColor = getColor(pixelData[index]);
+        const index = i * WIDTH + j;
+        const defaultColor = getColor(data[index]);
 
         rows.push(
           <Box sx={{ width: `${width}%` }} key={index}>
             <Pixel
               defaultColor={defaultColor}
-              handleChangeColor={handleChangeData}
+              handleChangeColor={handleChangeColor}
               selectedColor={selectedColor}
               index={index}
               isShowBorder={isShowBorder}
@@ -72,7 +62,7 @@ const DrawingPanel = ({ data, selectedColor }: IDrawingPanel) => {
         {renderDrawing()}
       </Box>
 
-      <Box mt={2}>
+      <Box mt={4}>
         <FormControlLabel
           control={<Switch checked={isShowBorder} onChange={() => setIsShowBorder(!isShowBorder)} color="primary" />}
           label="Show border"
