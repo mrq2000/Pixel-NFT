@@ -41,13 +41,13 @@ const Header = ({ handleOpenSideBar }: IHeaderProps) => {
             md: 84,
           },
           paddingX: {
-            md: '4rem',
+            md: '5rem',
           },
         }}
       >
         <Box component="a" href="/" sx={{ display: 'flex', alignItems: 'center' }}>
           <Box component="img" src={LOGO} sx={{ width: 36, height: 36, mr: 2 }} />
-          <Typography variant="h4" sx={{ cursor: 'pointer' }}>
+          <Typography variant="h4" sx={{ cursor: 'pointer', color: '#fff' }}>
             BIXEL
           </Typography>
         </Box>
