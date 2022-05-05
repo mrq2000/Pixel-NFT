@@ -93,7 +93,7 @@ const ImportCodeBtn = ({ handleChangeData }: IImportCodeBtn) => {
         </DialogActions>
       </Dialog>
 
-      <Button variant="contained" onClick={() => setOpen(true)}>
+      <Button variant="outlined" onClick={() => setOpen(true)} sx={{ fontSize: { xs: '0.8rem', md: 'inherit' } }}>
         Import Code
       </Button>
     </>

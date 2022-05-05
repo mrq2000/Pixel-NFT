@@ -6,6 +6,8 @@ import Button from '@mui/material/Button';
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
+import ImageIcon from '@mui/icons-material/Image';
+
 import { getColor, HEIGHT, WIDTH } from 'helpers/pixel';
 import Pixel from './Pixel';
 
@@ -18,7 +20,7 @@ interface IDrawingPanel {
 }
 
 const DrawingPanel = ({ data, selectedColor, handleChangeColor }: IDrawingPanel) => {
-  const [isShowBorder, setIsShowBorder] = useState(false);
+  const [isShowBorder, setIsShowBorder] = useState(true);
 
   const drawingPanelRef = useRef<any>();
 
@@ -62,7 +64,7 @@ const DrawingPanel = ({ data, selectedColor, handleChangeColor }: IDrawingPanel)
         {renderDrawing()}
       </Box>
 
-      <Box mt={4}>
+      <Box mt={4} display="flex">
         <FormControlLabel
           control={<Switch checked={isShowBorder} onChange={() => setIsShowBorder(!isShowBorder)} color="primary" />}
           label="Show border"
@@ -75,9 +77,10 @@ const DrawingPanel = ({ data, selectedColor, handleChangeColor }: IDrawingPanel)
               drawingPanelRef.current.style.width = '100%';
             }
           }}
-          variant="contained"
+          variant="outlined"
+          endIcon={<ImageIcon />}
         >
-          Export as Image
+          Export
         </Button>
       </Box>
     </Box>

@@ -22,9 +22,6 @@ const InitialWeb3Modal = () => {
         network: NETWORK,
         cacheProvider: true,
         providerOptions: {
-          binancechainwallet: {
-            package: true,
-          },
           walletconnect: {
             package: WalletConnectProvider,
             options: {

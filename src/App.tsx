@@ -7,6 +7,9 @@ import ThemeConfig from './theme';
 
 import Home from 'pages/Home';
 import Mint from 'pages/Mint';
+import Marketplace from 'pages/Marketplace';
+import Gallery from 'pages/Gallery';
+
 import PageNotFound from 'pages/404';
 
 import MainOutlet from './MainOutlet';
@@ -32,6 +35,8 @@ const ROUTER = (
         <Route path="" element={<MainOutlet />}>
           <Route index element={<Home />} />
           <Route path="mint" element={<Mint />} />
+          <Route path="marketplace" element={<Marketplace />} />
+          <Route path="gallery" element={<Gallery />} />
           <Route path="*" element={<PageNotFound />} />
         </Route>
       </Routes>
