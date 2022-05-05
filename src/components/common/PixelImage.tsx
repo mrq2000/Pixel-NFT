@@ -1,8 +1,6 @@
 const PixelImage = () => {
-  const data = "";
-  return (
-    <canvas />
-  )
+  const data = '';
+  return <canvas />;
 };
 
 export default PixelImage;
