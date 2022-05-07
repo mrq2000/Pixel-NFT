@@ -32,8 +32,8 @@ const Footer = () => {
           textAlign: 'center',
         }}
       >
-        <Typography fontSize="1.5rem" sx={{ mb: { xs: 1.2, sm: 0 } }}>
-          BIXEL
+        <Typography fontSize="1rem" sx={{ mb: { xs: 1.2, sm: 0 } }}>
+          Powered by TomoChain
         </Typography>
 
         <Stack
