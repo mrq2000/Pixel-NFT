@@ -33,7 +33,7 @@ const Footer = () => {
         }}
       >
         <Typography fontSize="1rem" sx={{ mb: { xs: 1.2, sm: 0 } }}>
-          Powered by TomoChain
+          Powered by CELO
         </Typography>
 
         <Stack

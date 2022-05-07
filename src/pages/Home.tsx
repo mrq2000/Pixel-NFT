@@ -88,7 +88,7 @@ const INTRODUCES = [
             color: (theme) => theme.palette.primary.main,
           }}
         >
-          10 TOMO
+          5 CELO
         </Box>
         )!. Sounds interesting, join us then let's draw and mint your NFT now.
       </Typography>
