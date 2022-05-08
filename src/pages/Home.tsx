@@ -7,6 +7,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import MintButton from 'components/Pixel/MintButton';
 
 import { ReactComponent as Discord } from 'assets/icons/discord-light.svg';
+import { toast } from 'helpers/notify';
 
 const IMAGES = ['/images/1.png', '/images/2.png', '/images/4.png', '/images/3.png'];
 
@@ -62,12 +63,12 @@ const INTRODUCES = [
         >
           The Best Pixel
         </Box>
-        . More over this NFT will use in our product in the future.
+        . Moreover, your NFT can be used in trading market and some upcoming features in the future.
       </Typography>
     ),
   },
   {
-    title: 'Early birds get the best deals!',
+    title: 'Early minting Nft will get the best deals !',
     content: (
       <Typography variant="caption">
         First
@@ -97,26 +98,72 @@ const INTRODUCES = [
 const FAQ = [
   {
     title: 'How To Mint?',
-    content: 'How to mint',
+    content: (
+      <>
+        1. Be sure that your wallet have enough amount of Celo first. <br /> <br />
+        2. Go to Minting tab, draw your NFT with your creativity or you can import code from our template in homepage to
+        make some change. <br /> <br />
+        3. After finishing your NFT, you can press the mint button to mint.
+      </>
+    ),
     image: '/images/mint.png',
     position: 'right',
+    code: 'tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttuuuuuuuuuuuuuuuuuuutttttuyvvvvvvvvvvvvvvvvddutttuyvvvvvvvvvvvvvvvvvvvduttuvvuvvvuvuvuvvuvuuuuuduttuvyuuvuuvuvuuvuvvvuvvduttuvyuvuvuvuvuvuuvvvuvvduttuvyuvvvuvuvuvvuvvvuvvduttuvyuvvvuvuvuvvuvvvuvvduttuvvuvvvuvuvuvvuvvvuvvduttuyvuvvvuvuvuvvuvvvuvvdutttuyvvvvvvvvvvvvvvvvvdutttttuuuuuuuuuuuuuuuuuuuttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt',
   },
   {
     title: 'The Best Pixel',
-    content: 'How to mint',
+    content: (
+      <>
+        There will be a contest for this NFTs with the prize of&nbsp;
+        <Box
+          component="span"
+          sx={{
+            color: (theme) => theme.palette.primary.main,
+          }}
+        >
+          10k USDT
+        </Box>
+        &nbsp;after minting phase. The contest is about finding the NFTs with high vote (favorite) on Instagram. We are
+        not the judger for that competition, we only upload your nft picture along with its link to our instagram and
+        all of you will do the voting work by sharing it around to get favorited as many as possible to claim our prize.
+        Therefore, let's draw NFT with your own style then mint and wait for minting phase end to join the contest to
+        get prize for 'The Best Pixel'.
+      </>
+    ),
     image: '/images/trophy.png',
+    code: 'ttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttuuuuuuuuuuuttttttttttttttunnnnnnnnputttttttttttuuuuntnnnnnnpuuuuttttttttuttuntnnznnnputtuttttttttuttuntnzznnnputtuttttttttuutuntnnznnnputuutttttttttuuunnnnznnnpuuuttttttttttttunnnnznnnputtttttttttttttuunnnnnnpuutttttttttttttttuunnnnpuutttttttttttttttttuunnpuuttttttttttttttttttttunuttttttttttttttttttttttunuttttttttttttttttttttttunutttttttttttttttttttttuunuutttttttttttttttttttunnnnputtttttttttttttttttuuuuuuutttttttttttttttttxxxxxxxxxtttttttttttttttxxxxxxxxxxxttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt',
     position: 'left',
   },
   {
     title: 'Why CELO?',
-    content:
-      'Celo. is extremely fast and cheap, with an average confirmation time of just 2 seconds and a gas cost of 0.0003 CELO for minting, buying and transferring in Bixel!',
+    content: (
+      <>
+        Celo. is extremely fast and cheap, with an average confirmation time of just 2 seconds and a gas cost of{' '}
+        <Box
+          component="span"
+          sx={{
+            color: (theme) => theme.palette.primary.main,
+          }}
+        >
+          0.0003 CELO
+        </Box>{' '}
+        for minting, buying and transferring in Bixel! <br />
+        <br />
+        It very suitable for our project.
+      </>
+    ),
     image: '/images/celo.png',
     position: 'right',
+    code: 'ttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttkkkkktttttttttttttttttttkkkkkkkktttttttttttttttkkktttttkkkttttttttttttttkktttttttkkkttttttttttttkktttttttttkktttttttttwwnmwwtttttttttkktttttttwwwmnwwwwtttttttkkttttttwwwtkkttwwwttttttkktttttwwwttkktttwwwtttttkktttttwwtttkkttttwwtttttkkttttwwtttttkkttttwwtttkktttttwwttttttkktttwwttkkttttttwwttttttkkkktwwtkkkttttttwwttttttttkkkmnkkttttttttwwwttttttttkknmkttttttttttwwtttttttttwwtttttttttttttwwtttttttwwttttttttttttttwwwtttttwwwttttttttttttttttwwwwwwwtttttttttttttttttttwwwwwtttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt',
   },
 ];
 
 const Home = () => {
+  const handleCopyCode = (code: string) => {
+    navigator.clipboard.writeText(code);
+    toast.success('Copy Code to Clipboard');
+  };
+
   return (
     <Box
       display="flex"
@@ -129,7 +176,7 @@ const Home = () => {
     >
       <Box display="flex" flex={1} sx={{ flexDirection: { xs: 'column', md: 'row' } }}>
         <Box sx={{ width: { xs: 350, md: 450 }, margin: 'auto', '> div': { aspectRatio: '5/6' } }}>
-          <Carousel indicators={false} interval={5500} duration={1000} animation="slide">
+          <Carousel indicators={false} interval={3000} duration={1000} animation="slide">
             {IMAGES.map((image) => (
               <Box key={image}>
                 <img src={image} alt="" />
@@ -153,7 +200,7 @@ const Home = () => {
         </Typography>
 
         <Typography variant="h4" sx={{ mb: 4 }}>
-          0/5500
+          0/5000
         </Typography>
 
         <MintButton />
@@ -169,7 +216,18 @@ const Home = () => {
           flexDirection={{ xs: 'column', md: fqa.position == 'right' ? 'row' : 'row-reverse' }}
           alignItems={{ xs: 'center', md: 'initial' }}
         >
-          <Box data-aos={`fade-${fqa.position}`} mb={2} sx={{ width: { xs: 350, md: 550 }, aspectRatio: '5/6' }}>
+          <Box
+            data-aos={`fade-${fqa.position}`}
+            mb={2}
+            sx={{ width: { xs: 350, md: 550 }, aspectRatio: '5/6', position: 'relative' }}
+          >
+            <Button
+              variant="contained"
+              sx={{ position: 'absolute', top: 5, right: 5 }}
+              onClick={() => handleCopyCode(fqa.code)}
+            >
+              Copy Code
+            </Button>
             <img src={fqa.image} />
           </Box>
 
@@ -185,7 +243,7 @@ const Home = () => {
         </Box>
       ))}
 
-      <Box mt={8}>
+      <Box mt={8} data-aos="fade-up">
         <Typography variant="h3" sx={{ textAlign: 'center', mb: 4 }}>
           Join the Community
         </Typography>
