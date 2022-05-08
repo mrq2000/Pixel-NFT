@@ -3,7 +3,7 @@ import { useTheme } from '@mui/material/styles';
 
 import { ReactComponent as Discord } from 'assets/icons/discord.svg';
 import { ReactComponent as Twitter } from 'assets/icons/twitter.svg';
-import { ReactComponent as Instagram } from 'assets/icons/instagram.svg';
+import tiktok from 'assets/icons/tiktok.png';
 
 const Footer = () => {
   const theme = useTheme();
@@ -64,8 +64,8 @@ const Footer = () => {
             <Discord width="1.5rem" height="1.5rem" />
           </a>
 
-          <a href="https://twitter.com/NftBixel" target="_blank">
-            <Instagram width="1.5rem" height="1.5rem" />
+          <a href="https://www.tiktok.com/@bixelnft" target="_blank">
+            <img src={tiktok} />
           </a>
         </Stack>
       </Toolbar>

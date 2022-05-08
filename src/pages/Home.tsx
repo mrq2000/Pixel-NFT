@@ -27,6 +27,13 @@ const IntroduceItem = ({ title, content }: IIntroduceItem) => {
   );
 };
 
+const scrollTo = (id: string) => {
+  const section = document.querySelector(id);
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+};
+
 const INTRODUCES = [
   {
     title: 'New idea',
@@ -60,6 +67,7 @@ const INTRODUCES = [
               textDecoration: 'underline',
             },
           }}
+          onClick={() => scrollTo('#FAQ-1')}
         >
           The Best Pixel
         </Box>
@@ -206,7 +214,7 @@ const Home = () => {
         <MintButton />
       </Box>
 
-      {FAQ.map((fqa) => (
+      {FAQ.map((fqa, index) => (
         <Box
           mt={6}
           display="flex"
@@ -215,6 +223,7 @@ const Home = () => {
           maxWidth={1200}
           flexDirection={{ xs: 'column', md: fqa.position == 'right' ? 'row' : 'row-reverse' }}
           alignItems={{ xs: 'center', md: 'initial' }}
+          id={`FAQ-${index}`}
         >
           <Box
             data-aos={`fade-${fqa.position}`}
