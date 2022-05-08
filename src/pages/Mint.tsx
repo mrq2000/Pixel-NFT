@@ -22,7 +22,7 @@ interface IMintForm {
 
 const Mint = () => {
   const colors = getColors();
-  const [selectedColor, setSelectedColor] = useState(colors[0]);
+  const [selectedColor, setSelectedColor] = useState(colors[colors.length - 1]);
   const [pixelData, setPixelData] = useState(DEFAULT_DATA.split(''));
   const [isReadTerm, setIsReadTerm] = useState(false);
   const [isOpenTerm, setIsOpenTerm] = useState(false);
@@ -57,6 +57,7 @@ const Mint = () => {
   return (
     <Container>
       <ConfirmTerm open={isOpenTerm} handleClose={() => setIsOpenTerm(false)} />
+
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
           <DrawingPanel data={pixelData} handleChangeColor={handleChangeColor} selectedColor={selectedColor} />

@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import AppBar from '@mui/material/AppBar';
@@ -45,7 +47,7 @@ const Header = ({ handleOpenSideBar }: IHeaderProps) => {
           },
         }}
       >
-        <Box component="a" href="/" sx={{ display: 'flex', alignItems: 'center' }}>
+        <Box component={Link} to="/" sx={{ display: 'flex', alignItems: 'center' }}>
           <Box component="img" src={LOGO} sx={{ width: 36, height: 36, mr: 2 }} />
           <Typography variant="h4" sx={{ cursor: 'pointer', color: '#fff' }}>
             BIXEL

@@ -38,11 +38,22 @@ const ConfirmTerm = ({ open, handleClose, ...props }: IConfirmTermProps) => {
       <DialogTitle sx={{ textAlign: 'center' }}>Term</DialogTitle>
 
       <DialogContent>
-        <Box>Hello</Box>
+        <Box>
+          1. NFT with coarse or slate name will not be allowed. You should avoid sensitive keyword on naming NFT too !
+        </Box>
+        <Box mt={3}>
+          2. The picture the same as an existed NFT will be disqualified from our "The Best PIXEL" contest. However,
+          those still can be traded on our marketplace
+        </Box>
+
+        <Box mt={3}>
+          3. If we find any NFT or any work of user that violate our term and service, we will prohibit that on our
+          market
+        </Box>
       </DialogContent>
 
       <DialogActions>
-        <Button onClick={handleClose}>Cancel</Button>
+        <Button onClick={handleClose}>OK</Button>
       </DialogActions>
     </Dialog>
   );

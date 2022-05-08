@@ -7,8 +7,6 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import MintButton from 'components/Pixel/MintButton';
 
 import { ReactComponent as Discord } from 'assets/icons/discord-light.svg';
-import { ReactComponent as Twitter } from 'assets/icons/twitter.svg';
-import { ReactComponent as Instagram } from 'assets/icons/instagram.svg';
 
 const IMAGES = ['/images/1.png', '/images/2.png', '/images/4.png', '/images/3.png'];
 
@@ -90,9 +88,31 @@ const INTRODUCES = [
         >
           5 CELO
         </Box>
-        )!. Sounds interesting, join us then let's draw and mint your NFT now.
+        ). Sounds interesting, join us then let's draw and mint your NFT now.
       </Typography>
     ),
+  },
+];
+
+const FAQ = [
+  {
+    title: 'How To Mint?',
+    content: 'How to mint',
+    image: '/images/mint.png',
+    position: 'right',
+  },
+  {
+    title: 'The Best Pixel',
+    content: 'How to mint',
+    image: '/images/trophy.png',
+    position: 'left',
+  },
+  {
+    title: 'Why CELO?',
+    content:
+      'Celo. is extremely fast and cheap, with an average confirmation time of just 2 seconds and a gas cost of 0.0003 CELO for minting, buying and transferring in Bixel!',
+    image: '/images/celo.png',
+    position: 'right',
   },
 ];
 
@@ -109,7 +129,7 @@ const Home = () => {
     >
       <Box display="flex" flex={1} sx={{ flexDirection: { xs: 'column', md: 'row' } }}>
         <Box sx={{ width: { xs: 350, md: 450 }, margin: 'auto', '> div': { aspectRatio: '5/6' } }}>
-          <Carousel indicators={false} interval={5000} duration={1000} animation="slide">
+          <Carousel indicators={false} interval={5500} duration={1000} animation="slide">
             {IMAGES.map((image) => (
               <Box key={image}>
                 <img src={image} alt="" />
@@ -129,15 +149,41 @@ const Home = () => {
 
       <Box sx={{ textAlign: 'center', my: 12 }}>
         <Typography variant="h3" sx={{ textAlign: 'center', mb: 3 }}>
-          A breakthrough in NFT world !
+          A breakthrough in NFT world!
         </Typography>
 
         <Typography variant="h4" sx={{ mb: 4 }}>
-          0/5000
+          0/5500
         </Typography>
 
         <MintButton />
       </Box>
+
+      {FAQ.map((fqa) => (
+        <Box
+          mt={6}
+          display="flex"
+          justifyContent="space-around"
+          width="100%"
+          maxWidth={1200}
+          flexDirection={{ xs: 'column', md: fqa.position == 'right' ? 'row' : 'row-reverse' }}
+          alignItems={{ xs: 'center', md: 'initial' }}
+        >
+          <Box data-aos={`fade-${fqa.position}`} mb={2} sx={{ width: { xs: 350, md: 550 }, aspectRatio: '5/6' }}>
+            <img src={fqa.image} />
+          </Box>
+
+          <Box maxWidth={550} flex={1}>
+            <Typography variant="h3" sx={{ mb: 4 }} data-aos="fade-down">
+              {fqa.title}
+            </Typography>
+
+            <Typography variant="h5" sx={{ mb: 4 }} data-aos={`fade-${fqa.position == 'right' ? 'left' : 'right'}`}>
+              {fqa.content}
+            </Typography>
+          </Box>
+        </Box>
+      ))}
 
       <Box mt={8}>
         <Typography variant="h3" sx={{ textAlign: 'center', mb: 4 }}>

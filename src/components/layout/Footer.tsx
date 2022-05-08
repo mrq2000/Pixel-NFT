@@ -29,12 +29,13 @@ const Footer = () => {
             md: 'row',
           },
           alignItems: 'center',
-          textAlign: 'center',
         }}
       >
-        <Typography fontSize="1rem" sx={{ mb: { xs: 1.2, sm: 0 } }}>
-          Powered by CELO
-        </Typography>
+        <Stack direction="column" sx={{ mb: { xs: 2, sm: 0 }, textAlign: { xs: 'center', md: 'left' } }}>
+          <Typography fontSize="1rem">Powered by CELO</Typography>
+
+          <Typography variant="caption">Email: contact@bixel-nft.com</Typography>
+        </Stack>
 
         <Stack
           direction="row"
