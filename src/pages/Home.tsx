@@ -185,8 +185,8 @@ const Home = () => {
       <Box display="flex" flex={1} sx={{ flexDirection: { xs: 'column', md: 'row' } }}>
         <Box sx={{ width: { xs: 350, md: 450 }, margin: 'auto', '> div': { aspectRatio: '5/6' } }}>
           <Carousel indicators={false} interval={3000} duration={1000} animation="slide">
-            {IMAGES.map((image) => (
-              <Box key={image}>
+            {IMAGES.map((image, index) => (
+              <Box key={index}>
                 <img src={image} alt="" />
               </Box>
             ))}
@@ -195,7 +195,7 @@ const Home = () => {
 
         <Box sx={{ width: { xs: 350, md: 430 }, ml: { xs: 0, md: 2 }, mt: { xs: 3, md: 0 } }}>
           {INTRODUCES.map((item, index) => (
-            <Box key={index} mb={3}>
+            <Box key={index} mb={3} id={index.toString()}>
               <IntroduceItem title={item.title} content={item.content} />
             </Box>
           ))}
@@ -224,6 +224,7 @@ const Home = () => {
           flexDirection={{ xs: 'column', md: fqa.position == 'right' ? 'row' : 'row-reverse' }}
           alignItems={{ xs: 'center', md: 'initial' }}
           id={`FAQ-${index}`}
+          key={`FAQ-${index}`}
         >
           <Box
             data-aos={`fade-${fqa.position}`}
@@ -277,7 +278,7 @@ const Home = () => {
           <Box
             component="a"
             sx={{ textDecoration: 'none' }}
-            href="https://twitter.com/NftBixel"
+            href="https://discord.gg/c5qPBNpN"
             target="_blank"
             rel="noreferrer"
           >
