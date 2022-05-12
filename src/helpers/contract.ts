@@ -1,35 +1,33 @@
-// import { IUseWeb3Store } from './../stores/useWeb3Store';
-// import { ethers } from 'ethers';
+import { ethers } from 'ethers';
 
-// import { NFT as INFT } from 'typechain/NFT';
-// import { Marketplace as IMarketplace } from 'typechain/Marketplace';
-// import { IERC20 } from 'typechain/IERC20';
+import { abi as NFTAbi } from 'abi/Pixel.json';
+import { Pixel as INFT } from 'typechain/Pixel';
 
 // import { abi as NFTAbi } from 'abi/NFT.json';
 // import { abi as MarketplaceAbi } from 'abi/Marketplace.json';
 // import { abi as IERC20Abi } from 'abi/IERC20.json';
 
-// import useWeb3Store from 'stores/useWeb3Store';
+import useWeb3Store from 'stores/useWeb3Store';
 
-// const CONTRACT_ADDRESS = String(process.env.REACT_APP_CONTRACT_ADDRESS);
-// const MARKET_CONTRACT_ADDRESS = String(process.env.REACT_APP_MARKET_CONTRACT_ADDRESS);
-// const CHAIN_RPC_URL = String(process.env.REACT_APP_CHAIN_RPC_URL);
+const CONTRACT_ADDRESS = String(process.env.REACT_APP_CONTRACT_ADDRESS);
+const CHAIN_RPC_URL = String(process.env.REACT_APP_CHAIN_RPC_URL);
 
-// export const getNFTContractWithSigner = () => {
-//   const { provider, isConnected } = useWeb3Store();
+export const getNFTContractWithSigner = () => {
+  const { provider, isConnected } = useWeb3Store();
+ 
+  if (!provider || !isConnected) return;
 
-//   if (!provider || !isConnected) throw 'You much connect to wallet!';
-//   const contract = new ethers.Contract(CONTRACT_ADDRESS, NFTAbi, provider.getSigner()) as INFT;
+  const contract = new ethers.Contract(CONTRACT_ADDRESS, NFTAbi, provider.getSigner()) as INFT;
 
-//   return contract;
-// };
+  return contract;
+};
 
-// export const getNFThContractRPC = () => {
-//   const provider = new ethers.providers.JsonRpcProvider(CHAIN_RPC_URL);
-//   const contract = new ethers.Contract(CONTRACT_ADDRESS, NFTAbi, provider) as INFT;
+export const getNFThContractRPC = () => {
+  const provider = new ethers.providers.JsonRpcProvider(CHAIN_RPC_URL);
+  const contract = new ethers.Contract(CONTRACT_ADDRESS, NFTAbi, provider) as INFT;
 
-//   return contract;
-// };
+  return contract;
+};
 
 // export const getMarketContractWithSigner = () => {
 //   const { provider, isConnected } = useWeb3Store();
@@ -55,5 +53,3 @@
 
 //   return erc20Contract;
 // };
-
-export const a = 1;

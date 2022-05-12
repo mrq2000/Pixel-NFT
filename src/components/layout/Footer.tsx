@@ -60,7 +60,7 @@ const Footer = () => {
             <Twitter width="1.5rem" height="1.5rem" />
           </a>
 
-          <a href="https://twitter.com/NftBixel" target="_blank">
+          <a href="https://discord.gg/c5qPBNpN" target="_blank">
             <Discord width="1.5rem" height="1.5rem" />
           </a>
 

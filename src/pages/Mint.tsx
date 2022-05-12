@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router';
 import { useState } from 'react';
 import { CirclePicker } from 'react-color';
 import { useForm } from 'react-hook-form';
@@ -8,24 +9,28 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Checkbox from '@mui/material/Checkbox';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 import DrawingPanel from 'components/Pixel/DrawingPanel';
 import { getColors, DEFAULT_DATA, getKey } from 'helpers/pixel';
 import ImportCodeBtn from 'components/Pixel/ImportCodeBtn';
 import { toast } from 'helpers/notify';
-import MintButton from 'components/Pixel/MintButton';
 import ConfirmTerm from 'components/Pixel/ConfirmTerm';
+import useMint from 'hooks/mint';
+import { handleErrorMessage } from 'helpers/error';
 
 interface IMintForm {
   name: string;
 }
 
 const Mint = () => {
+  const navigate = useNavigate();
   const colors = getColors();
   const [selectedColor, setSelectedColor] = useState(colors[colors.length - 1]);
   const [pixelData, setPixelData] = useState(DEFAULT_DATA.split(''));
-  const [isReadTerm, setIsReadTerm] = useState(false);
   const [isOpenTerm, setIsOpenTerm] = useState(false);
+
+  const { mutate: mint, isLoading: loadingMint } = useMint();
 
   const {
     register,
@@ -34,6 +39,18 @@ const Mint = () => {
   } = useForm<IMintForm>({
     mode: 'onSubmit',
   });
+
+  const handleMint = ({ name }: IMintForm) => {
+    mint(`${pixelData.join('')}-${name}`, {
+      onSuccess: () => {
+        toast.success('Mint successful!');
+        navigate('/profile');
+      },
+      onError: (e: any) => {
+        handleErrorMessage(e?.message || 'Something went wrong!');
+      },
+    });
+  };
 
   const handleChangeColor = (newColor: string, index: number) => {
     const newChar = getKey(newColor);
@@ -110,7 +127,7 @@ const Mint = () => {
             </Box>
 
             <Box display="flex" alignItems="center" mt={10} sx={{ fontSize: '0.8rem' }}>
-              <Checkbox checked={isReadTerm} onClick={() => setIsReadTerm(!isReadTerm)} />I read the&nbsp;
+              <Checkbox checked={true} />I read the&nbsp;
               <Box
                 component="span"
                 sx={{ textDecoration: 'underline', color: (theme) => theme.palette.primary.main, cursor: 'pointer' }}
@@ -120,8 +137,17 @@ const Mint = () => {
               </Box>
               &nbsp;of service
             </Box>
+
             <Box mt={2}>
-              <MintButton />
+              <LoadingButton
+                variant="contained"
+                size="large"
+                loading={loadingMint}
+                sx={{ px: 5 }}
+                onClick={handleSubmit(handleMint)}
+              >
+                Mint
+              </LoadingButton>
             </Box>
           </Box>
         </Grid>
