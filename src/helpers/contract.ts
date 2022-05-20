@@ -14,7 +14,7 @@ const CHAIN_RPC_URL = String(process.env.REACT_APP_CHAIN_RPC_URL);
 
 export const getNFTContractWithSigner = () => {
   const { provider, isConnected } = useWeb3Store();
- 
+
   if (!provider || !isConnected) return;
 
   const contract = new ethers.Contract(CONTRACT_ADDRESS, NFTAbi, provider.getSigner()) as INFT;
@@ -22,7 +22,7 @@ export const getNFTContractWithSigner = () => {
   return contract;
 };
 
-export const getNFThContractRPC = () => {
+export const getNFTContractRPC = () => {
   const provider = new ethers.providers.JsonRpcProvider(CHAIN_RPC_URL);
   const contract = new ethers.Contract(CONTRACT_ADDRESS, NFTAbi, provider) as INFT;
 

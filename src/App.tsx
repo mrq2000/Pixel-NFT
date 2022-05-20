@@ -14,6 +14,7 @@ import Home from 'pages/Home';
 import Mint from 'pages/Mint';
 import Marketplace from 'pages/Marketplace';
 import Gallery from 'pages/Gallery';
+import Profile from 'pages/Profile';
 
 import PageNotFound from 'pages/404';
 
@@ -22,6 +23,7 @@ import { SnackbarConfigurator } from './helpers/notify';
 import InitialWeb3Modal from 'components/web3modal/InitialWeb3Modal';
 
 import './App.css';
+import PrivateOutlet from 'PrivateOutlet';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -36,12 +38,15 @@ const queryClient = new QueryClient({
 const ROUTER = (
   <BrowserRouter>
     <Routes>
+      <Route path="" element={<PrivateOutlet />}>
+        <Route path="profile" element={<Profile />} />
+      </Route>
+
       <Route path="" element={<MainOutlet />}>
         <Route index element={<Home />} />
         <Route path="mint" element={<Mint />} />
         <Route path="marketplace" element={<Marketplace />} />
         <Route path="gallery" element={<Gallery />} />
-        <Route path="profile" element={<Gallery />} />
         <Route path="*" element={<PageNotFound />} />
       </Route>
     </Routes>

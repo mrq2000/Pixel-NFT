@@ -26,7 +26,11 @@ interface PixelInterface extends ethers.utils.Interface {
     "_tokenIdCounter()": FunctionFragment;
     "approve(address,uint256)": FunctionFragment;
     "balanceOf(address)": FunctionFragment;
+    "baseURI()": FunctionFragment;
     "getApproved(uint256)": FunctionFragment;
+    "getCurrentCounter()": FunctionFragment;
+    "getNFTData(uint256,uint256)": FunctionFragment;
+    "getOwnerNFTData(address,uint256,uint256)": FunctionFragment;
     "isApprovedForAll(address,address)": FunctionFragment;
     "name()": FunctionFragment;
     "nftData(uint256)": FunctionFragment;
@@ -39,7 +43,9 @@ interface PixelInterface extends ethers.utils.Interface {
     "safeMint(string)": FunctionFragment;
     "safeTransferFrom(address,address,uint256)": FunctionFragment;
     "setApprovalForAll(address,bool)": FunctionFragment;
+    "setBaseURI(string)": FunctionFragment;
     "setPrice(uint256)": FunctionFragment;
+    "setTokensUri(uint256[],string[])": FunctionFragment;
     "supportsInterface(bytes4)": FunctionFragment;
     "symbol()": FunctionFragment;
     "tokenByIndex(uint256)": FunctionFragment;
@@ -62,9 +68,22 @@ interface PixelInterface extends ethers.utils.Interface {
     values: [string, BigNumberish]
   ): string;
   encodeFunctionData(functionFragment: "balanceOf", values: [string]): string;
+  encodeFunctionData(functionFragment: "baseURI", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "getApproved",
     values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getCurrentCounter",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getNFTData",
+    values: [BigNumberish, BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getOwnerNFTData",
+    values: [string, BigNumberish, BigNumberish]
   ): string;
   encodeFunctionData(
     functionFragment: "isApprovedForAll",
@@ -96,9 +115,14 @@ interface PixelInterface extends ethers.utils.Interface {
     functionFragment: "setApprovalForAll",
     values: [string, boolean]
   ): string;
+  encodeFunctionData(functionFragment: "setBaseURI", values: [string]): string;
   encodeFunctionData(
     functionFragment: "setPrice",
     values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "setTokensUri",
+    values: [BigNumberish[], string[]]
   ): string;
   encodeFunctionData(
     functionFragment: "supportsInterface",
@@ -139,8 +163,18 @@ interface PixelInterface extends ethers.utils.Interface {
   ): Result;
   decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "baseURI", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "getApproved",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getCurrentCounter",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "getNFTData", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "getOwnerNFTData",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -167,7 +201,12 @@ interface PixelInterface extends ethers.utils.Interface {
     functionFragment: "setApprovalForAll",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "setBaseURI", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "setPrice", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "setTokensUri",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(
     functionFragment: "supportsInterface",
     data: BytesLike
@@ -306,10 +345,27 @@ export class Pixel extends BaseContract {
 
     balanceOf(owner: string, overrides?: CallOverrides): Promise<[BigNumber]>;
 
+    baseURI(overrides?: CallOverrides): Promise<[string]>;
+
     getApproved(
       tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<[string]>;
+
+    getCurrentCounter(overrides?: CallOverrides): Promise<[BigNumber]>;
+
+    getNFTData(
+      _offset: BigNumberish,
+      _limit: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[string[]]>;
+
+    getOwnerNFTData(
+      _owner: string,
+      _offset: BigNumberish,
+      _limit: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[string[]]>;
 
     isApprovedForAll(
       owner: string,
@@ -366,8 +422,19 @@ export class Pixel extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
+    setBaseURI(
+      _uri: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
     setPrice(
       newPrice: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    setTokensUri(
+      _ids: BigNumberish[],
+      _tokensURI: string[],
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
@@ -429,10 +496,27 @@ export class Pixel extends BaseContract {
 
   balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
 
+  baseURI(overrides?: CallOverrides): Promise<string>;
+
   getApproved(
     tokenId: BigNumberish,
     overrides?: CallOverrides
   ): Promise<string>;
+
+  getCurrentCounter(overrides?: CallOverrides): Promise<BigNumber>;
+
+  getNFTData(
+    _offset: BigNumberish,
+    _limit: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<string[]>;
+
+  getOwnerNFTData(
+    _owner: string,
+    _offset: BigNumberish,
+    _limit: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<string[]>;
 
   isApprovedForAll(
     owner: string,
@@ -486,8 +570,19 @@ export class Pixel extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
+  setBaseURI(
+    _uri: string,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
   setPrice(
     newPrice: BigNumberish,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  setTokensUri(
+    _ids: BigNumberish[],
+    _tokensURI: string[],
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
@@ -546,10 +641,27 @@ export class Pixel extends BaseContract {
 
     balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
 
+    baseURI(overrides?: CallOverrides): Promise<string>;
+
     getApproved(
       tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<string>;
+
+    getCurrentCounter(overrides?: CallOverrides): Promise<BigNumber>;
+
+    getNFTData(
+      _offset: BigNumberish,
+      _limit: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<string[]>;
+
+    getOwnerNFTData(
+      _owner: string,
+      _offset: BigNumberish,
+      _limit: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<string[]>;
 
     isApprovedForAll(
       owner: string,
@@ -596,7 +708,15 @@ export class Pixel extends BaseContract {
       overrides?: CallOverrides
     ): Promise<void>;
 
+    setBaseURI(_uri: string, overrides?: CallOverrides): Promise<void>;
+
     setPrice(newPrice: BigNumberish, overrides?: CallOverrides): Promise<void>;
+
+    setTokensUri(
+      _ids: BigNumberish[],
+      _tokensURI: string[],
+      overrides?: CallOverrides
+    ): Promise<void>;
 
     supportsInterface(
       interfaceId: BytesLike,
@@ -744,8 +864,25 @@ export class Pixel extends BaseContract {
 
     balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
 
+    baseURI(overrides?: CallOverrides): Promise<BigNumber>;
+
     getApproved(
       tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    getCurrentCounter(overrides?: CallOverrides): Promise<BigNumber>;
+
+    getNFTData(
+      _offset: BigNumberish,
+      _limit: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    getOwnerNFTData(
+      _owner: string,
+      _offset: BigNumberish,
+      _limit: BigNumberish,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
@@ -804,8 +941,19 @@ export class Pixel extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
+    setBaseURI(
+      _uri: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
     setPrice(
       newPrice: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    setTokensUri(
+      _ids: BigNumberish[],
+      _tokensURI: string[],
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
@@ -871,8 +1019,25 @@ export class Pixel extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
+    baseURI(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
     getApproved(
       tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    getCurrentCounter(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    getNFTData(
+      _offset: BigNumberish,
+      _limit: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    getOwnerNFTData(
+      _owner: string,
+      _offset: BigNumberish,
+      _limit: BigNumberish,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
@@ -934,8 +1099,19 @@ export class Pixel extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
+    setBaseURI(
+      _uri: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
     setPrice(
       newPrice: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    setTokensUri(
+      _ids: BigNumberish[],
+      _tokensURI: string[],
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 

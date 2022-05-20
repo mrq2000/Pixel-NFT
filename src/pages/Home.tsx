@@ -8,6 +8,7 @@ import MintButton from 'components/Pixel/MintButton';
 
 import { ReactComponent as Discord } from 'assets/icons/discord-light.svg';
 import { toast } from 'helpers/notify';
+import useGetTotalSupply from 'hooks/useGetTotalSupply';
 
 const IMAGES = ['/images/1.png', '/images/2.png', '/images/4.png', '/images/3.png'];
 
@@ -172,6 +173,8 @@ const Home = () => {
     toast.success('Copy Code to Clipboard');
   };
 
+  const { data } = useGetTotalSupply();
+
   return (
     <Box
       display="flex"
@@ -208,7 +211,7 @@ const Home = () => {
         </Typography>
 
         <Typography variant="h4" sx={{ mb: 4 }}>
-          0/5000
+          {data || '...'}/5000
         </Typography>
 
         <MintButton />

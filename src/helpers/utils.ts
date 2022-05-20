@@ -1,4 +1,4 @@
-import { formatEther, formatUnits } from 'ethers/lib/utils';
+import { formatUnits } from 'ethers/lib/utils';
 
 export const getAllValuesEnum = (enumVar: any): any[] => {
   const keysAndValues = Object.values(enumVar);

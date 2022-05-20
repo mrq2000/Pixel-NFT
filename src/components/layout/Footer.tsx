@@ -34,6 +34,17 @@ const Footer = () => {
         <Stack direction="column" sx={{ mb: { xs: 2, sm: 0 }, textAlign: { xs: 'center', md: 'left' } }}>
           <Typography fontSize="1rem">Powered by CELO</Typography>
 
+          <Box
+            component="a"
+            href="https://explorer.celo.org/address/0x69dA5A4C381f1AeDfF548b44e122Fd1A9E3924D0/read-contract"
+            target="_blank"
+            sx={{
+              color: '#fff',
+            }}
+          >
+            Contract
+          </Box>
+
           <Typography variant="caption">Email: contact@bixel-nft.com</Typography>
         </Stack>
 

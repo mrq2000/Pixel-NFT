@@ -1,20 +1,22 @@
-import { getNFThContractRPC } from './../helpers/contract';
 import { useMutation } from 'react-query';
 
 import { getNFTContractWithSigner } from 'helpers/contract';
 import { PRICE_IN_WEI } from 'constant';
+import useWeb3Store from 'stores/useWeb3Store';
+import { BigNumber } from '@ethersproject/bignumber';
+
+const OWNER_ADDRESS = process.env.REACT_APP_OWNER_ADDRESS;
 
 const useMint = () => {
   const nftContract = getNFTContractWithSigner();
-  const test = getNFThContractRPC();
+  const { accountAddress } = useWeb3Store();
 
   return useMutation(async (data: string) => {
     if (!nftContract) throw Error('You much connect your wallet first!');
-    console.log(test);
 
     return await (
       await nftContract.safeMint(data, {
-        value: PRICE_IN_WEI,
+        value: OWNER_ADDRESS !== accountAddress ? BigNumber.from(PRICE_IN_WEI) : BigNumber.from('0'),
       })
     ).wait();
   });
