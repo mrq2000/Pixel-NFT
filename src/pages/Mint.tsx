@@ -47,7 +47,7 @@ const Mint = () => {
         navigate('/profile');
       },
       onError: (e: any) => {
-        handleErrorMessage(e?.message || 'Something went wrong!');
+        handleErrorMessage('Something error! Make sure you got enough Celo');
       },
     });
   };
